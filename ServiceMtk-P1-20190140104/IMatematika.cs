@@ -11,19 +11,24 @@ namespace ServiceMtk_P1_20190140104
     [ServiceContract]
     public interface IMatematika
     {
-        [OperationContract]       
+        [OperationContract]
+        [FaultContract(typeof(MathFault))]
         int Tambah(int a, int b);
 
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         int Kurang(int a, int b);
 
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         int Kali(int a, int b);
 
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         int Bagi(int a, int b);
 
         [OperationContract]
+        [FaultContract(typeof(MathFault))]
         Koordinat TKoordinat(Koordinat a, Koordinat b);
     }
 
@@ -47,4 +52,13 @@ namespace ServiceMtk_P1_20190140104
         }
     }
 
+    [DataContract]
+    class MathFault
+    {
+        [DataMember]
+        public string Kode { get; set; }
+
+        [DataMember]
+        public string Pesan { get; set; }
+    }
 }
